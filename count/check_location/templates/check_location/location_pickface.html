@@ -1,0 +1,89 @@
+<!-- location_pickface.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Location Pickface</title>
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Upload Files</title>
+        <style>
+            body {
+                font-family: Arial, sans-serif;
+                margin: 0;
+                padding: 20px;
+            }
+    
+            h1 {
+                color: #333;
+            }
+    
+            form {
+                margin-bottom: 20px;
+            }
+    
+            input[type="file"] {
+                margin-bottom: 10px;
+            }
+    
+            input[type="submit"] {
+                background-color: #4CAF50;
+                border: none;
+                color: white;
+                padding: 10px 20px;
+                text-align: center;
+                text-decoration: none;
+                display: inline-block;
+                font-size: 16px;
+                cursor: pointer;
+            }
+    
+            .error-message {
+                color: red;
+            }
+    
+            .table-container {
+                margin-top: 20px;
+            }
+    
+            table {
+                border-collapse: collapse;
+                width: 100%;
+            }
+    
+            th, td {
+                padding: 8px;
+                text-align: left;
+                border-bottom: 1px solid #ddd;
+            }
+        </style>
+    </head>
+    <body>
+        <h1>Upload Files</h1>
+        <form method="POST" enctype="multipart/form-data" action="{% url 'show_location_pickface' %}">
+            {% csrf_token %}
+            <input type="file" name="location_inven_file">Upload File Location<br>
+            <input type="file" name="master_location_file">Upload File Master<br>
+            <input type="submit" value="Upload">
+        </form>
+        <h1>Location Pickface Conclusion</h1>
+        <div class="table-container">
+            {% if html_table_grouped_data %}
+                {{ html_table_grouped_data | safe }}
+            {% else %}
+                <p class="error-message">No grouped data available.</p>
+            {% endif %}
+        </div>
+        <h1>Location Pickface</h1>
+        <div class="table-container">
+            {% if html_table_location_pickface %}
+                {{ html_table_location_pickface | safe }}
+            {% else %}
+                <p class="error-message">No location pickface data available.</p>
+            {% endif %}
+        </div>
+    </body>
+    </html>
+    
+
+
